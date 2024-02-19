@@ -44,6 +44,9 @@ class Base:
         for i in range(4):
             self.servos_list.append(Servo(i*(np.pi/2), self.servo_radius, self.servo_height, self.servo_horn))
 
+    def get_servos(self):
+        return self.servos_list
+
     def rotate_servos(self, alpha_0, alpha_1, alpha_2, alpha_3):
         angles = [alpha_0, alpha_1, alpha_2, alpha_3]
         for i in range(len(self.servos_list)):
