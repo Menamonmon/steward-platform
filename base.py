@@ -14,6 +14,8 @@ class Servo:
         self.horn = np.array([self.servo_horn, 0, 0])
         self.horn = R_z(self.horn, self.servo_angle)
 
+        self.horn_end = self.radius + self.height + self.horn
+
     def rotate(self, alpha):
         self.horn = np.array([self.servo_horn, 0, 0])
         self.horn = R_z(self.horn, self.servo_angle)
@@ -26,9 +28,11 @@ class Servo:
         elif self.servo_angle == 3*np.pi/2:
             self.horn = R_x(self.horn, -alpha)
 
+        self.horn_end = self.radius + self.height + self.horn
 
-    def get_vector(self):
-        return self.radius + self.height + self.horn
+
+    def get_horn_end(self):
+        return self.horn_end
 
    
 class Base: 
@@ -48,6 +52,6 @@ class Base:
     def horn_ends(self):
         positions = []
         for i in self.servos_list:
-            positions.append(i.get_vector())
+            positions.append(i.get_horn_end())
         return positions
 
